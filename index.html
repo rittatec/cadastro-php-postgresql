@@ -1,0 +1,98 @@
+<!-- tela de cadastro feita com html, css e javascript 
+ que envia os dados para um arquivo php via ajax e exibe 
+ a resposta na tela -->
+
+
+ <!-- inicio + titulo da pagina: Cadastro -->
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>Cadastro</title> 
+
+<!-- estilização simples com css -->
+
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f4f4f4;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+    .form-container {
+      background: #fff;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0px 4px 12px rgba(0,0,0,0.2);
+      width: 330px;
+    }
+    .form-container h2 {
+      text-align: center;
+      margin-bottom: 15px;
+      color: #333;
+    }
+    input {
+      width: 95%;
+      padding: 10px;
+      margin: 8px 0;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      font-size: 14px;
+    }
+    button {
+      width: 100%;
+      padding: 10px;
+      background: #007bff;
+      color: #fff;
+      border: none;
+      border-radius: 6px;
+      font-size: 16px;
+      cursor: pointer;
+    }
+    button:hover {
+      background: #0056b3;
+    }
+    #resposta {
+      margin-top: 10px;
+      text-align: center;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+
+<!-- formulario de cadastro com campos para nome, email e senha -->
+  <div class="form-container">
+    <h2>Cadastro</h2>
+    <form id="cadastroForm">
+      <input type="text" name="nome" placeholder="Nome completo" required>
+      <input type="email" name="email" placeholder="E-mail" required>
+      <input type="password" name="senha" placeholder="Senha" required>
+      <button type="submit">Cadastrar</button>
+    </form>
+    <p id="resposta"></p>
+  </div>
+
+
+<!-- script em javascript para enviar os dados do formulario via ajax -->
+  <script>
+    document.getElementById("cadastroForm").addEventListener("submit", function(e) {
+      e.preventDefault(); // evita o envio padrão do formulário uma vez que utilizo AJAX
+
+      const formData = new FormData(this); // cria um objeto FormData com os dados do formulário
+
+      const xhr = new XMLHttpRequest(); // cria um novo objeto XMLHttpRequest
+      xhr.open("POST", "cadastro.php", true); // configura a requisição para o arquivo PHP enquato o true indica que é assíncrono(nao trava a pagina enquanto espera a resposta)
+
+      xhr.onload = function()  { // função que será chamada quando a resposta for recebida
+        document.getElementById("resposta").innerText = this.responseText;
+      }; // envia a requisição com os dados do formulário
+
+      xhr.send(formData);
+    });
+  </script>
+</body>
+</html>
