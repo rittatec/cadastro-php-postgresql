@@ -19,7 +19,7 @@ $result = pg_query_params($conn,
 [$email]);
 
 if (pg_num_rows($result) > 0) {
-    echo "❌ Email já cadastrado.";
+    echo "Email já cadastrado.";
     exit;
 }
 
@@ -29,8 +29,8 @@ $insert = pg_query_params($conn,
 [$nome, $email, $senhaHash]);
 
 if ($insert) {
-    echo "✅ Cadastro realizado com sucesso!";
+    echo "Cadastro realizado com sucesso!";
 } else {
-    echo "❌ Erro ao cadastrar. Tente novamente.";
+    echo "Erro ao cadastrar. Tente novamente.";
 }
 ?>
