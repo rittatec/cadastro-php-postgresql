@@ -1,0 +1,9 @@
+CREATE TABLE usuarios (
+	id SERIAL primary key,
+	nome VARCHAR (100) NOT NULL,
+	email VARCHAR (155) UNIQUE NOT NULL,
+	senha VARCHAR (255) NOT NULL,
+	criado_em TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+SELECT * FROM usuarios;
